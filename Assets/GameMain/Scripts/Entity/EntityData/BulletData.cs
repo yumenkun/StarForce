@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace StarForce
@@ -57,6 +58,11 @@ namespace StarForce
             {
                 return m_Speed;
             }
+        }
+
+        public override List<Type> getTrait()
+        {
+            return new List<Type>() { typeof(BodyTrait) };
         }
     }
 }

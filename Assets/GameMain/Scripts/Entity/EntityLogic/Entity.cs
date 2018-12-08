@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityGameFramework.Runtime;
 
 namespace StarForce
@@ -7,6 +9,23 @@ namespace StarForce
     {
         [SerializeField]
         private EntityData m_EntityData = null;
+
+        private Dictionary<Type, TraitBase> traitDic = new Dictionary<Type, TraitBase>();
+        private List<TraitBase> traitList = new List<TraitBase>();
+
+        public T GetTrait<T>() where T : TraitBase
+        {
+            TraitBase val;
+            if (traitDic.TryGetValue(typeof(T), out val))
+            {
+                return val as T;
+            }
+            else
+            {
+                Log.Error("Entity not has " + typeof(T).Name);
+                return null;
+            }
+        }
 
         public int Id
         {
@@ -30,6 +49,14 @@ namespace StarForce
         {
             base.OnInit(userData);
             CachedAnimation = GetComponent<Animation>();
+            EntityData data = userData as EntityData;
+            var traits = data.getTrait();
+            foreach (Type type in traits)
+            {
+                TraitBase trait = Activator.CreateInstance(type, this) as TraitBase;
+                traitDic.Add(type,  trait);
+                traitList.Add(trait);
+            }
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -105,6 +132,17 @@ namespace StarForce
 #endif
         {
             base.OnUpdate(elapseSeconds, realElapseSeconds);
+            if (traitList != null && traitList.Count > 0)
+            {
+                for (int i = 0; i < traitList.Count; i++)
+                {
+                    var trait = traitList[i];
+                    if (trait.isEnable)
+                    {
+                        traitList[i].OnUpdate(elapseSeconds, realElapseSeconds);
+                    }
+                }
+            }
         }
     }
 }

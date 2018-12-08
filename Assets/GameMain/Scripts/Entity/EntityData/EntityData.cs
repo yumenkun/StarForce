@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace StarForce
@@ -74,6 +75,11 @@ namespace StarForce
             {
                 m_Rotation = value;
             }
+        }
+
+        public virtual List<Type> getTrait()
+        {
+            return null;
         }
     }
 }
