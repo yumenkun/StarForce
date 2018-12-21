@@ -14,6 +14,7 @@ namespace StarForce
 
         private float m_InitPosition = 0f;
 
+
 #if UNITY_2017_3_OR_NEWER
         protected override void OnInit(object userData)
 #else
@@ -21,7 +22,6 @@ namespace StarForce
 #endif
         {
             base.OnInit(userData);
-
             CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
             if (canvasScaler == null)
             {

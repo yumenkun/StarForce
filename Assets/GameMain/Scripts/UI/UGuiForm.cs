@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using KSFramework;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
@@ -13,6 +14,8 @@ namespace StarForce
         private static Font s_MainFont = null;
         private Canvas m_CachedCanvas = null;
         private CanvasGroup m_CanvasGroup = null;
+        public UIWidget widget;
+        protected UILuaOutlet outlet;
 
         public int OriginalDepth
         {
@@ -98,6 +101,9 @@ namespace StarForce
                     texts[i].text = GameEntry.Localization.GetString(texts[i].text);
                 }
             }
+
+            outlet = gameObject.GetComponent<UILuaOutlet>();
+            widget.SetPropValue(outlet.OutletInfos);
         }
 
 #if UNITY_2017_3_OR_NEWER

@@ -134,6 +134,15 @@ namespace StarForce
             UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Restart);
         }
 
+        protected override void OnInit(object userData)
+        {
+            widget = new SettingFormWidget();
+            SettingFormWidget m_widget = widget as SettingFormWidget;
+            base.OnInit(userData);
+            Debug.LogError(m_widget.AAA.name);
+
+        }
+
 #if UNITY_2017_3_OR_NEWER
         protected override void OnOpen(object userData)
 #else
