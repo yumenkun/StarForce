@@ -11,7 +11,7 @@ namespace StarForce
 
         public FsmState<Entity>[] GetStates()
         {
-            if(actor.)
+//            if(actor.)
             return new FsmState<Entity>[] {new MoveState() };
         }
     }
