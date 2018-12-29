@@ -1,4 +1,6 @@
-﻿using UnityGameFramework.Runtime;
+﻿using UnityEngine;
+using UnityGameFramework.Runtime;
+using Utils;
 
 namespace StarForce
 {
@@ -70,14 +72,14 @@ namespace StarForce
             private set;
         }
 
-        /// <summary>
-        /// 获取事件组件。
-        /// </summary>
-        public static EventComponent Event
-        {
-            get;
-            private set;
-        }
+//        /// <summary>
+//        /// 获取事件组件。
+//        /// </summary>
+//        public static EventComponent Event
+//        {
+//            get;
+//            private set;
+//        }
 
         /// <summary>
         /// 获取有限状态机组件。
@@ -178,6 +180,15 @@ namespace StarForce
             private set;
         }
 
+        /// <summary>
+        /// 获取事件管理器。
+        /// </summary>
+        public static EventDispatcher Event
+        {
+            get;
+            private set;
+        }
+
         private static void InitBuiltinComponents()
         {
             Base = UnityGameFramework.Runtime.GameEntry.GetComponent<BaseComponent>();
@@ -187,7 +198,7 @@ namespace StarForce
             Debugger = UnityGameFramework.Runtime.GameEntry.GetComponent<DebuggerComponent>();
             Download = UnityGameFramework.Runtime.GameEntry.GetComponent<DownloadComponent>();
             Entity = UnityGameFramework.Runtime.GameEntry.GetComponent<EntityComponent>();
-            Event = UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
+            Event = EventDispatcher.Instance;//UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
             Fsm = UnityGameFramework.Runtime.GameEntry.GetComponent<FsmComponent>();
             Localization = UnityGameFramework.Runtime.GameEntry.GetComponent<LocalizationComponent>();
             Network = UnityGameFramework.Runtime.GameEntry.GetComponent<NetworkComponent>();
@@ -199,6 +210,8 @@ namespace StarForce
             Sound = UnityGameFramework.Runtime.GameEntry.GetComponent<SoundComponent>();
             UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
             WebRequest = UnityGameFramework.Runtime.GameEntry.GetComponent<WebRequestComponent>();
+            Utils.EventDispatcher.InitEventDefine();
+            Debug.LogError(ActorEventDefine.Attack);
         }
     }
 }

@@ -139,5 +139,30 @@ namespace KEngine
         }
 
         #endregion
+
+        public static void LogError(params object[] p)
+        {
+
+        }
+
+        public static void ErrorLog(params object[] p)
+        {
+
+        }
+
+        public static void Debug(params object[] p)
+        {
+
+        }
+        public static void LogException(params object[] p)
+        {
+
+        }
+
+        public static void LogWarning(params object[] p)
+        {
+
+        }
     }
+
 }
