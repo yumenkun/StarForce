@@ -183,7 +183,7 @@ namespace StarForce
         /// <summary>
         /// 获取事件管理器。
         /// </summary>
-        public static EventDispatcher Event
+        public static EventComponent Event
         {
             get;
             private set;
@@ -198,7 +198,7 @@ namespace StarForce
             Debugger = UnityGameFramework.Runtime.GameEntry.GetComponent<DebuggerComponent>();
             Download = UnityGameFramework.Runtime.GameEntry.GetComponent<DownloadComponent>();
             Entity = UnityGameFramework.Runtime.GameEntry.GetComponent<EntityComponent>();
-            Event = EventDispatcher.Instance;//UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
+            Event = UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>(); //EventDispatcher.Instance;//
             Fsm = UnityGameFramework.Runtime.GameEntry.GetComponent<FsmComponent>();
             Localization = UnityGameFramework.Runtime.GameEntry.GetComponent<LocalizationComponent>();
             Network = UnityGameFramework.Runtime.GameEntry.GetComponent<NetworkComponent>();
